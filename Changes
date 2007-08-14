@@ -1,5 +1,7 @@
 Revision history for Number-Phone-NO
-
+0.05    Tue Aug 14 09:07:00 2007
+        - Fix some install issues
+        
 0.04    Tue Aug 14 07:35:00 2007
         - Updated dependencies
         
