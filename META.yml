@@ -1,5 +1,5 @@
 --- 
-abstract: "[One line description of module's purpose here]"
+abstract: Norwegian subclass of Number::Phone
 author: Andreas Marienborg  C<< <andreas@startsiden.no> >>
 build_requires: 
   Test::More: 0
@@ -15,5 +15,8 @@ no_index:
     - inc
     - t
 requires: 
+  Carp: 0
   DBM::Deep: 0
-version: 0.03
+  Number::Phone: 0
+  Scalar::Util: 0
+version: 0.04

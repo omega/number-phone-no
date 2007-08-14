@@ -13,7 +13,6 @@ lib/Number/Phone/NO.pm
 lib/Number/Phone/NO/Data.pm
 MANIFEST
 MANIFEST.bak
-MANIFEST.skip
 META.yml			# Will be created by "make dist"
 README
 t/00.load.t

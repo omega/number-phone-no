@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 use base qw(Number::Phone);
 use Scalar::Util 'blessed';
 use Number::Phone;
@@ -104,13 +104,12 @@ __END__
 
 =head1 NAME
 
-Number::Phone::NO - [One line description of module's purpose here]
+Number::Phone::NO - Norwegian subclass of Number::Phone
 
 
 =head1 VERSION
 
-This document describes Number::Phone::NO version 0.0.1
-
+This document describes Number::Phone::NO version 0.04
 
 =head1 SYNOPSIS
 
