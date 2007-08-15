@@ -1,4 +1,7 @@
 Revision history for Number-Phone-NO
+0.06    Wed Aug 15 10:20:00 2007
+        - Including Makefile.PL seems like a jolly good idea
+        
 0.05    Tue Aug 14 09:07:00 2007
         - Fix some install issues
         
