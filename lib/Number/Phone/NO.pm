@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 use base qw(Number::Phone);
 use Scalar::Util 'blessed';
 use Number::Phone;

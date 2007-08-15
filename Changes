@@ -1,4 +1,10 @@
 Revision history for Number-Phone-NO
+0.08    Wed Aug 15 12:21:00 2007
+        - Botched upload
+        
+0.07    Wed Aug 15 12:10:00 2007
+        - Fix a bug with subscriber method not handeling non-valid numbers
+        
 0.06    Wed Aug 15 10:20:00 2007
         - Including Makefile.PL seems like a jolly good idea
         
