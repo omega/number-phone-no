@@ -20,6 +20,7 @@ t/00.load.t
 t/05.data.t
 t/10.use.t
 t/15.format.t
+t/99.bug.subscriber.t
 t/perlcritic.t
 t/pod-coverage.t
 t/pod.t

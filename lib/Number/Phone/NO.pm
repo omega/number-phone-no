@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 use base qw(Number::Phone);
 use Scalar::Util 'blessed';
 use Number::Phone;
@@ -30,7 +30,7 @@ sub subscriber {
 	$self = shift if($self eq __PACKAGE__);
 	$self = __PACKAGE__->new($self)
 	    unless(blessed($self) && $self->isa(__PACKAGE__));
-	
+	return unless ($self and blessed($self) and $self->isa(__PACKAGE__));
     my $parsed_number = $$self;
     $parsed_number =~ s/[^0-9+]//g;               # strip non-digits/plusses
     $parsed_number =~ s/^\+47//;                  # remove leading +47
