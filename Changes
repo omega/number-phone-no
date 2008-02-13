@@ -1,4 +1,7 @@
 Revision history for Number-Phone-NO
+0.09    Wed Feb 13th 11:52:00 2008
+        - Updated to DBM::Deep 1.0007 (v3 database)
+        
 0.08    Wed Aug 15 12:21:00 2007
         - Botched upload
         

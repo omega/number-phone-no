@@ -16,7 +16,7 @@ no_index:
     - t
 requires: 
   Carp: 0
-  DBM::Deep: 1.0
+  DBM::Deep: 1.0007
   Number::Phone: 1.0
   Scalar::Util: 0
-version: 0.08
+version: 0.09

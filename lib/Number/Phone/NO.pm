@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 use base qw(Number::Phone);
 use Scalar::Util 'blessed';
 use Number::Phone;
@@ -93,7 +93,9 @@ sub format {
         __PACKAGE__->new($self);
     my $nr = $self->subscriber();
     my @digits = split(//, $nr);
-    my $format = ($self->is_mobile || $self->is_specialrate || $self->is_tollfree ? "%d%d%d %d%d %d%d%d" : "%d%d %d%d %d%d %d%d");
+    my $format = ($self->is_mobile || $self->is_specialrate || $self->is_tollfree 
+        ? "%d%d%d %d%d %d%d%d" 
+        : "%d%d %d%d %d%d %d%d");
     $format = "%d"x scalar(@digits) unless (scalar(@digits) == 8);
     
 #    warn "format: $format, " . join(", ", @digits);
