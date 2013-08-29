@@ -6,33 +6,23 @@ use warnings;
 use strict;
 use Carp;
 
-use base qw(Number::Phone);
+use base qw(Number::Phone::StubCountry::NO);
 use Scalar::Util 'blessed';
-use Number::Phone;
+use Number::Phone 2.2;
 use Number::Phone::NO::Data;
 
-$Number::Phone::subclasses{country_code()} = __PACKAGE__;
 
 my $cache = {};
+sub country_code { 47; }
 
-sub new {
-    my $class = shift;
-    my $number = shift;
-    die("No number given to ".__PACKAGE__."->new()\n") unless($number);
-    return bless(\$number, $class) if(is_valid($number));
-}
-
-
-sub country_code {
-    return 47;
-}
 sub subscriber {
     my $self = shift;
-	$self = shift if($self eq __PACKAGE__);
-	$self = __PACKAGE__->new($self)
-	    unless(blessed($self) && $self->isa(__PACKAGE__));
-	return unless ($self and blessed($self) and $self->isa(__PACKAGE__));
-    my $parsed_number = $$self;
+    unless (blessed($self) && $self->isa(__PACKAGE__)) {
+        carp "Calling as package sub is deprecated, call as object methods";
+        $self = __PACKAGE__->new($self)
+    }
+    return unless ($self and blessed($self) and $self->isa(__PACKAGE__));
+    my $parsed_number = $self->{number};
     $parsed_number =~ s/[^0-9+]//g;               # strip non-digits/plusses
     $parsed_number =~ s/^\+47//;                  # remove leading +47
     return $parsed_number;
@@ -47,10 +37,12 @@ foreach my $is (qw(
     no strict 'refs'; ## no critic
     *{__PACKAGE__."::is_$is"} = sub {
         my $self = shift;
-    	$self = shift if($self eq __PACKAGE__);
-    	$self = __PACKAGE__->new($self)
-    	    unless(blessed($self) && $self->isa(__PACKAGE__));
-    	$self && $cache->{$$self} ? $cache->{$$self}->{"is_$is"} : undef;
+        unless (blessed($self) && $self->isa(__PACKAGE__)) {
+            carp "Calling as package sub is deprecated, call as object methods";
+            $self = __PACKAGE__->new($self)
+        }
+        return unless ($self and blessed($self) and $self->isa(__PACKAGE__));
+        $self && $cache->{$self->{number}} ? $cache->{$self->{number}}->{"is_$is"} : undef;
     }
 }
 
@@ -58,32 +50,39 @@ foreach my $method (qw(operator areacode areaname location )) {
     no strict 'refs'; ## no critic
     *{__PACKAGE__."::$method"} = sub {
         my $self = shift;
-        $self = (blessed($self) && $self->isa(__PACKAGE__)) ?
-            $self :
-            __PACKAGE__->new($self);
-        return $cache->{${$self}}->{$method};
+        unless (blessed($self) && $self->isa(__PACKAGE__)) {
+            carp "Calling as package sub is deprecated, call as object methods";
+            $self = __PACKAGE__->new($self)
+        }
+        return unless ($self and blessed($self) and $self->isa(__PACKAGE__));
+        return $cache->{$self->{number}}->{$method};
     }
 }
 
 sub is_valid {
     my ($number) = @_;
-    return 1 if(blessed($number) && $number->isa(__PACKAGE__));
-    
+    return 1 if (
+        blessed($number)
+        && $number->isa(__PACKAGE__)
+        && $cache->{$number}
+    );
+    $number = $number->{number} if blessed($number);
+
     return 1 if($cache->{$number}->{is_valid});
-    
+
     my $parsed_number = $number;
     $parsed_number =~ s/[^0-9+]//g;               # strip non-digits/plusses
     $parsed_number =~ s/^\+47//;                  # remove leading +47
-    
-    
+
+
     # a norwegian phone number can be one of two forms:
     # +4712345678
     #    12345678
 
     my $bucket = Number::Phone::NO::Data::lookup($parsed_number);
-    
+
     $cache->{$number} = $bucket;
-    
+
     return $cache->{$number}->{is_valid};
 }
 
