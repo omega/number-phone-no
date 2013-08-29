@@ -1,5 +1,7 @@
 Revision history for Number-Phone-NO
 {{$NEXT}}
+
+0.10      2013-08-29 10:31:07 Asia/Bangkok
         - Switch to Dist::Zilla
         - Upgrade to Number::Phone 2.2
 
