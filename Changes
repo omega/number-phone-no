@@ -1,5 +1,7 @@
 Revision history for Number-Phone-NO
 {{$NEXT}}
+        - Skip a dep (Thanks to Alexandr Ciorni)
+        - Re-make github repo to get away from gitpan.
 
 0.10      2013-08-29 10:31:07 Asia/Bangkok
         - Switch to Dist::Zilla
