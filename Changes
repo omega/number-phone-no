@@ -1,5 +1,7 @@
 Revision history for Number-Phone-NO
 {{$NEXT}}
+
+0.11      2013-09-02 11:10:55 Asia/Bangkok
         - Skip a dep (Thanks to Alexandr Ciorni)
         - Re-make github repo to get away from gitpan.
 
